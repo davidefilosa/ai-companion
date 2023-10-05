@@ -6,13 +6,14 @@ import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./theme-toggle";
+import MobileSidebar from "./mobile-sidebar";
 
 const font = Poppins({ weight: "600", subsets: ["latin"] });
 const Navbar = () => {
   return (
-    <div className="fixed w-full z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary">
+    <div className="fixed w-full h-16 z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary">
       <div className="flex items-center">
-        <Menu className="block md:hidden" />
+        <MobileSidebar />
         <Link href="/">
           <h1
             className={cn(
