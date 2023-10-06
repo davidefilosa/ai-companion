@@ -27,7 +27,7 @@ model Companion {
   src String
   name String @db.String
   description String
-  insctructions String @db.String
+  instructions String @db.String
   seed String @db.String
 
 

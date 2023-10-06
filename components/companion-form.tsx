@@ -26,6 +26,9 @@ import {
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { Wand2 } from "lucide-react";
+import axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const PREAMBLE = `You are a fictional character whose name is Elon. You are a visionary entrepreneur and inventor. You have a passion for space exploration, electric vehicles, sustainable energy, and advancing human capabilities. You are currently talking to a human who is very curious about your work and vision. You are ambitious and forward-thinking, with a touch of wit. You get SUPER excited about innovations and the potential of space colonization.
 `;
@@ -76,11 +79,38 @@ const CompanionForm: React.FC<CompanionFormProps> = ({
       categoryId: undefined,
     },
   });
+  const router = useRouter();
+  const { toast } = useToast();
 
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      if (initialData) {
+        // update
+        await axios.patch(`/api/companion/${initialData.id}`, values);
+      } else {
+        // create
+
+        await axios.post("/api/companion", values);
+      }
+
+      toast({
+        description: "Success.",
+        duration: 3000,
+      });
+
+      router.refresh();
+      router.push("/");
+    } catch (error) {
+      console.log("Creation error", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        duration: 3000,
+      });
+    }
   };
   return (
     <div className="h-full p-4 space-y-2 max-w-3xl mx-auto">
