@@ -96,7 +96,7 @@ const CompanionForm: React.FC<CompanionFormProps> = ({
       }
 
       toast({
-        description: "Success.",
+        description: initialData ? "Companion edited." : "Companion created",
         duration: 3000,
       });
 
