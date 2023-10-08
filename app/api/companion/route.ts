@@ -2,6 +2,7 @@ import { NextResponse } from "@/node_modules/next/server";
 import { request } from "http";
 import { currentUser } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
+import { checkSubscription } from "@/lib/subscription";
 
 export async function POST(req: Request) {
   try {
@@ -22,6 +23,11 @@ export async function POST(req: Request) {
       !seed
     ) {
       return new NextResponse("Missing required fileds.", { status: 400 });
+    }
+
+    const isPro = await checkSubscription();
+    if (!isPro) {
+      return new NextResponse("Require pro subscription.", { status: 403 });
     }
 
     const companion = await prismadb.companion.create({

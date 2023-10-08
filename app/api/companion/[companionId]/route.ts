@@ -1,6 +1,7 @@
 import { NextResponse } from "@/node_modules/next/server";
 import { currentUser } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
+import { checkSubscription } from "@/lib/subscription";
 
 export async function PATCH(
   req: Request,
@@ -28,6 +29,11 @@ export async function PATCH(
       !seed
     ) {
       return new NextResponse("Missing required fileds.", { status: 400 });
+    }
+
+    const isPro = await checkSubscription();
+    if (!isPro) {
+      return new NextResponse("Require pro subscription.", { status: 403 });
     }
 
     const companion = await prismadb.companion.update({
@@ -64,6 +70,11 @@ export async function DELETE(
 
     if (!user || !user.id || !user.firstName) {
       return new NextResponse("Unauthorized.", { status: 401 });
+    }
+
+    const isPro = await checkSubscription();
+    if (!isPro) {
+      return new NextResponse("Require pro subscription.", { status: 403 });
     }
 
     const companion = await prismadb.companion.delete({
