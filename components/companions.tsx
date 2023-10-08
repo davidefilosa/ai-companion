@@ -10,8 +10,8 @@ interface CompanionsProps {
   data: (Companion & { _count: { messages: number } })[];
 }
 
-const Companions: React.FC<Companion> = ({ data }) => {
-  if (data.lenght === 0) {
+const Companions: React.FC<CompanionsProps> = ({ data }) => {
+  if (data.length === 0) {
     return (
       <div className="pt-10 flex flex-col items-center justify-center space-y-3">
         <div className="relative w-60 h-60">
