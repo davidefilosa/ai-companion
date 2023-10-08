@@ -5,8 +5,8 @@ import prismadb from "@/lib/prismadb";
 
 interface RootPageProps {
   searchParams: {
-    categoryId: String;
-    name: String;
+    categoryId: string;
+    name: string;
   };
 }
 
