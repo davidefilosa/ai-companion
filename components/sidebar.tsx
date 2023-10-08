@@ -26,7 +26,7 @@ const routes = [
 ];
 
 interface SidebarProps {
-  isPro: Boolean;
+  isPro: boolean;
 }
 
 const Sidebar = ({ isPro }: SidebarProps) => {

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import ChatClient from "./components/client";
 
 interface ChatIdPageProps {
-  params: { chatId: String };
+  params: { chatId: string };
 }
 
 const ChatIdPage = async ({ params }: ChatIdPageProps) => {
