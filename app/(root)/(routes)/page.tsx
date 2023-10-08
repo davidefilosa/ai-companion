@@ -36,6 +36,7 @@ const RootPage = async ({ searchParams }: RootPageProps) => {
     <div className="h-full p-4 space-y-2">
       <SearchInput />
       <Categories data={categories} />
+      {/* @ts-ignore*/}
       <Companions data={data} />
     </div>
   );
