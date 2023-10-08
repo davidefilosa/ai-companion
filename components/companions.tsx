@@ -7,7 +7,7 @@ import { Card, CardFooter, CardHeader } from "./ui/card";
 import { MessagesSquare } from "lucide-react";
 
 interface CompanionsProps {
-  data: (Companion & { _count: { messages: number } })[];
+  data: Companion[];
 }
 
 const Companions = ({ data }: CompanionsProps) => {
