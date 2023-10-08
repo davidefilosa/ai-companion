@@ -14,7 +14,7 @@ const RootPage = async ({ searchParams }: RootPageProps) => {
   const data = await prismadb.companion.findMany({
     where: {
       categoryId: searchParams.categoryId,
-      /* tslint:disable-next-line */
+      // @ts-ignore
       name: { search: searchParams.name },
     },
     orderBy: {
