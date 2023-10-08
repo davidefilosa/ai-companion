@@ -7,7 +7,11 @@ import { Card, CardFooter, CardHeader } from "./ui/card";
 import { MessagesSquare } from "lucide-react";
 
 interface CompanionsProps {
-  data: Companion[];
+  data: (Companion & {
+    _count: {
+      messages: number;
+    };
+  })[];
 }
 
 const Companions = ({ data }: CompanionsProps) => {
@@ -46,7 +50,7 @@ const Companions = ({ data }: CompanionsProps) => {
               <p className="lowercase">@{item.userName}</p>
               <div className="flex items-center">
                 <MessagesSquare className="w-3 h-3 mr-1" />
-                {item._count.messages}
+                {item._count.messages.toString()}
               </div>
             </CardFooter>
           </Link>
