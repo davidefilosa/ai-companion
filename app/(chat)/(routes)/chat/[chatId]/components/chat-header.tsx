@@ -66,7 +66,7 @@ const ChatHeader = ({ companion }: ChatHeaderPromps) => {
             <p className="font-bold">{companion.name}</p>
             <div className="flex items-center text-xs text-muted-foreground">
               <MessageSquare className="w-3 h-3 mr-1" />
-              {companion._count.messages}
+              {companion._count.messages.toString()}
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
