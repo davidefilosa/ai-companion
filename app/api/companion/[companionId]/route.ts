@@ -1,5 +1,4 @@
 import { NextResponse } from "@/node_modules/next/server";
-import { request } from "http";
 import { currentUser } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
 
